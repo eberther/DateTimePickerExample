@@ -68,7 +68,6 @@ namespace DateTimePickerExample.ViewModels
             StartDateTimeViewModel.SelectedDateTime = StartDateTimeViewModel.SelectedDate.ToDateTime();
             _startDate = StartDateTimeViewModel.SelectedDateTime;
             this.RaisePropertyChanged(nameof(StartDate));
-            //this.RaisePropertyChanged(nameof(StartDateTimeViewModel));
         }
         private void OnChangeEndDateTime()
         {
@@ -80,7 +79,6 @@ namespace DateTimePickerExample.ViewModels
             EndDateTimeViewModel.SelectedDateTime = EndDateTimeViewModel.SelectedDate.ToDateTime();
             _endDate = EndDateTimeViewModel.SelectedDateTime;
             this.RaisePropertyChanged(nameof(EndDate));
-            //this.RaisePropertyChanged(nameof(EndDateTimeViewModel));
         }
     }
 }
