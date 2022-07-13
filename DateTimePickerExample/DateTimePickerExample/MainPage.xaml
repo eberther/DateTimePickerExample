@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DateTimePickerExample.Controls"
+             x:Class="DateTimePickerExample.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DateTimePickerStyle" TargetType="controls:DateTimePicker">
+                <Setter Property="HeaderBackgroundColor" Value="WhiteSmoke" />
+                <Setter Property="HeaderTextColor" Value="DarkGray" />
+                <Setter Property="SelectedItemTextColor" Value="LightBlue" />
+                <Setter Property="CancelButtonTextColor" Value="LightBlue" />
+                <Setter Property="OKButtonTextColor" Value="LightBlue" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="PickerMode" Value="Dialog" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <controls:DateTimePicker x:Name="StartDateTimePicker"
+                                     SelectedItem="{Binding StartDateTimeViewModel.SelectedDate, Mode=TwoWay}"
+                                     MinimumDateTime="{Binding StartDateTimeViewModel.OriginDateTime}"
+                                     MaximumDateTime="{Binding EndDateTimeViewModel.SelectedDateTime}"
+                                     IsOpen="{Binding IsChangeStartDateTimeOpen, Mode=TwoWay}"
+                                     OkButtonClicked="StartDateTimePicker_OkButtonClicked"
+                                     Style="{StaticResource DateTimePickerStyle}"/>
+            <controls:DateTimePicker x:Name="EndDateTimePicker"
+                                     SelectedItem="{Binding EndDateTimeViewModel.SelectedDate, Mode=TwoWay}"
+                                     MinimumDateTime="{Binding StartDateTimeViewModel.SelectedDateTime}"
+                                     MaximumDateTime="{Binding EndDateTimeViewModel.OriginDateTime}"
+                                     IsOpen="{Binding IsChangeEndDateTimeOpen, Mode=TwoWay}"
+                                     OkButtonClicked="EndDateTimePicker_OkButtonClicked"
+                                     Style="{StaticResource DateTimePickerStyle}"/>
+
+
+            <StackLayout VerticalOptions="End">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeStartDateTimeCommand}"/>
+                </StackLayout.GestureRecognizers>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Text="StartDate"
+                           VerticalTextAlignment="End"
+                           FontSize="25"
+                           HorizontalOptions="Center">
+                    </Label>
+                    <Label Grid.Row="1" 
+                           Text="{Binding StartDate}"
+                           VerticalTextAlignment="Start"
+                           TextColor="LightBlue"
+                           HorizontalOptions="Center">
+                    </Label>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="Start" Grid.Row="2">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeEndDateTimeCommand}"/>
+                </StackLayout.GestureRecognizers>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Text="EndDate"
+                           VerticalTextAlignment="End"
+                           FontSize="25"
+                           HorizontalOptions="Center">
+                    </Label>
+                    <Label Grid.Row="1" 
+                           Text="{Binding EndDate}"
+                           VerticalTextAlignment="Start"
+                           TextColor="LightBlue"
+                           HorizontalOptions="Center">
+                    </Label>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
